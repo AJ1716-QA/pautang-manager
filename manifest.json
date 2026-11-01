@@ -1,6 +1,6 @@
 {
-  "name": "Pautang Manager",
-  "short_name": "Pautang",
+  "name": "LendTrack Pro",
+  "short_name": "LendTrack",
   "description": "Mobile lending records and payment tracking",
   "start_url": "./",
   "scope": "./",
