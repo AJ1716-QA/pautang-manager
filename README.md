@@ -1,4 +1,4 @@
-# Pautang Manager
+# LendTrack Pro
 
 A mobile-first, installable lending recordkeeping MVP for individuals and small businesses in the Philippines.
 
