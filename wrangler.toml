@@ -1,0 +1,8 @@
+name = "pautang-manager-api"
+main = "worker.js"
+compatibility_date = "2026-10-01"
+
+[[d1_databases]]
+binding = "DB"
+database_name = "pautang-manager-db"
+database_id = "REPLACE_WITH_YOUR_D1_DATABASE_ID"
