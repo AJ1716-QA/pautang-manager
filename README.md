@@ -1,6 +1,6 @@
 # LendTrack Pro
 
-A mobile-first, installable lending recordkeeping MVP for individuals and small businesses in the Philippines.
+A mobile-first, installable lending recordkeeping app for independent lenders and small businesses in the Philippines, with a premium navy, ivory and emerald visual identity.
 
 ## Features
 - Borrower directory with phone and notes
@@ -11,6 +11,10 @@ A mobile-first, installable lending recordkeeping MVP for individuals and small 
 - CSV exports for loans and payments
 - JSON backup and restore
 - App shell caching for offline opening after the first successful load
+- Premium responsive dashboard, refined navigation, custom app icon and accessible form styling
+
+## Current release status
+The premium interface refresh is committed to the `main` branch. The D1 Worker now initializes its database tables automatically on first request. Cloud login and cloud sync are **not yet connected to the browser interface**; the current borrower, loan and payment screens still use device-local storage. Complete the Cloudflare Worker deployment and frontend authentication/sync integration before onboarding customers.
 
 ## Important limitations
 **This MVP stores all borrower and payment records in this browser/device's local storage.** It has no account login, cloud synchronization, encryption, or multi-device access. Clearing browser data can erase records. Download backups regularly and keep them private. Do not use it for sensitive real customer records on a shared device until authentication and secure cloud storage are implemented.
