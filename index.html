@@ -18,7 +18,7 @@ header button{border:1px solid rgba(255,255,255,.18);background:rgba(255,255,255
 .tabs button{white-space:nowrap;border:0;background:transparent;border-radius:9px;padding:10px 17px;color:#687584;font-size:12px;font-weight:700;transition:.18s ease}
 .tabs button.active{background:#fff;color:var(--navy);box-shadow:0 2px 8px rgba(18,32,46,.08)}
 #home:before{content:"LENDING OVERVIEW";display:block;color:var(--green);font-size:10px;font-weight:800;letter-spacing:.16em;margin:0 0 8px}
-#home:after{content:"A clearer view of every loan, collection and commitment.";display:block;color:var(--muted);font-size:13px;margin:-10px 0 20px}
+#home:after{content:none}
 .cards{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:13px;margin-bottom:18px}
 .card,section.panel{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:19px;margin-bottom:14px;box-shadow:var(--shadow)}
 .metric{position:relative;overflow:hidden;min-height:112px}
@@ -60,6 +60,16 @@ footer{text-align:center;color:#87929e;font-size:11px;padding:20px;border-top:1p
 @media(min-width:700px){.cards{grid-template-columns:repeat(4,minmax(0,1fr))}.wrap{padding:30px 28px 50px}.card,section.panel{padding:22px}.metric{min-height:128px}.metric strong{font-size:29px}}
 @media(max-width:520px){header{padding:14px 15px}.wrap{padding:18px 14px 32px}.formgrid{grid-template-columns:1fr}.full{grid-column:auto}.tabs{margin-bottom:20px}.tabs button{padding:10px 13px}.metric{padding:15px;min-height:100px}.metric strong{font-size:22px}.card,section.panel{border-radius:15px;padding:16px}.row{align-items:center}}
 @media(prefers-reduced-motion:reduce){*{scroll-behavior:auto!important;transition:none!important}}
+</style><style>
+.dashboard-intro{position:relative;overflow:hidden;background:linear-gradient(115deg,#101d2d 0%,#1b3044 72%,#23453f 130%);color:#fff;border-radius:20px;padding:25px 24px;margin:0 0 17px;box-shadow:0 16px 35px rgba(16,29,45,.13)}
+.dashboard-intro:after{content:"";position:absolute;width:210px;height:210px;border:1px solid rgba(211,183,127,.2);border-radius:50%;right:-64px;top:-100px;box-shadow:0 0 0 24px rgba(211,183,127,.035),0 0 0 50px rgba(211,183,127,.025)}
+.dashboard-intro .intro-kicker{font-size:9px;letter-spacing:.18em;font-weight:800;color:#d7bd8c}
+.dashboard-intro h2{font:800 23px 'Manrope',sans-serif;letter-spacing:-.055em;color:#fff;margin:10px 0 6px;max-width:420px}
+.dashboard-intro p{font-size:12px;line-height:1.55;color:#bdc8d1;margin:0;max-width:390px}
+.dashboard-intro .intro-mark{position:absolute;right:23px;bottom:19px;font:800 13px 'Manrope',sans-serif;color:rgba(255,255,255,.2);letter-spacing:.08em}
+.dashboard-intro .intro-mark i{font-style:normal;color:#d7bd8c}
+@media(min-width:700px){.dashboard-intro{padding:31px 34px;margin-bottom:20px}.dashboard-intro h2{font-size:28px}}
+@media(max-width:520px){.dashboard-intro{padding:22px 19px}.dashboard-intro h2{font-size:21px}.dashboard-intro .intro-mark{right:17px;bottom:15px}}
 </style></head><body><header><div class="row"><div><h1 id="brand">LendTrack Pro</h1><p>Simple lending records for your small business</p></div><button id="backupTop" aria-label="Backup data">Backup</button></div></header><main class="wrap"><div class="notice">Your records are saved on this device only. Export a backup regularly. Do not use shared/public devices or enter sensitive data until cloud login and encryption are added.</div><nav class="tabs"><button class="active" data-tab="home">Overview</button><button data-tab="borrowers">Borrowers</button><button data-tab="loans">Loans</button><button data-tab="reports">Reports</button><button data-tab="settings">Settings</button></nav>
 <section id="home"><div class="cards"><div class="card metric"><small>Outstanding balance</small><strong id="mOutstanding">₱0.00</strong></div><div class="card metric"><small>Active loans</small><strong id="mActive">0</strong></div><div class="card metric"><small>Overdue loans</small><strong id="mOverdue">0</strong></div><div class="card metric"><small>Collected this month</small><strong id="mCollected">₱0.00</strong></div></div><section class="panel"><div class="row"><h2>Due and overdue</h2><button class="primary" data-action="newloan">+ New loan</button></div><div id="dueList"></div></section><section class="panel"><div class="row"><h2>Recent activity</h2><button data-tab="loans">All loans</button></div><div id="recent"></div></section></section>
 <section id="borrowers" class="hidden"><section class="panel"><div class="row"><h2>Borrowers</h2><button class="primary" data-action="newborrower">+ Add borrower</button></div><input id="borrowerSearch" placeholder="Search name or phone"><div id="borrowerList"></div></section></section>
