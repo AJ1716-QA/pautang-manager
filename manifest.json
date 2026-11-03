@@ -1,12 +1,12 @@
 {
   "name": "LendTrack Pro",
   "short_name": "LendTrack",
-  "description": "Mobile lending records and payment tracking",
+  "description": "A refined lending and collections workspace for independent lenders.",
   "start_url": "./",
   "scope": "./",
   "display": "standalone",
-  "background_color": "#f5f8f6",
-  "theme_color": "#176b53",
+  "background_color": "#f4f5f2",
+  "theme_color": "#101d2d",
   "icons": [
     {
       "src": "icon.svg",
