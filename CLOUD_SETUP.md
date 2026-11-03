@@ -4,9 +4,9 @@ This is the authentication and per-account cloud-data API for the GitHub Pages P
 
 ## Cloudflare setup
 1. Create a **new D1 database** named `pautang-manager-db` (do not reuse NegosyoHub's database).
-2. In the D1 console, run the complete contents of `schema.sql`.
-3. Create a Worker named `pautang-manager-api` and deploy `worker.js`.
-4. Add a D1 binding named `DB` pointing to the new database. If using Wrangler, replace the database ID in `wrangler.toml`.
+2. Create a Worker named `pautang-manager-api` and deploy the current `worker.js` from this repository.
+3. Add a D1 binding named `DB` pointing to `pautang-manager-db`.
+4. The Worker now creates the required tables automatically when its API receives its first request; no SQL paste/import step is needed.
 5. Test `https://YOUR-WORKER.workers.dev/api/health`. The app origin is restricted to `https://aj1716-qa.github.io`.
 
 ## API
