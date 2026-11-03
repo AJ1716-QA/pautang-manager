@@ -27,6 +27,39 @@ function token() {
   const bytes = crypto.getRandomValues(new Uint8Array(32));
   return b64(bytes).replaceAll("+","-").replaceAll("/","_").replaceAll("=","");
 }
+let schemaReady = null;
+async function ensureSchema(env) {
+  if (!schemaReady) {
+    schemaReady = (async () => {
+      const statements = [
+        `CREATE TABLE IF NOT EXISTS users (
+          id TEXT PRIMARY KEY,
+          email TEXT NOT NULL UNIQUE COLLATE NOCASE,
+          password_salt TEXT NOT NULL,
+          password_hash TEXT NOT NULL,
+          created_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP
+        )`,
+        `CREATE TABLE IF NOT EXISTS sessions (
+          token_hash TEXT PRIMARY KEY,
+          user_id TEXT NOT NULL REFERENCES users(id) ON DELETE CASCADE,
+          expires_at INTEGER NOT NULL,
+          created_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP
+        )`,
+        `CREATE INDEX IF NOT EXISTS sessions_user_id_idx ON sessions(user_id)`,
+        `CREATE TABLE IF NOT EXISTS user_data (
+          user_id TEXT PRIMARY KEY REFERENCES users(id) ON DELETE CASCADE,
+          data_json TEXT NOT NULL,
+          updated_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP
+        )`
+      ];
+      for (const sql of statements) await env.DB.prepare(sql).run();
+    })().catch(error => {
+      schemaReady = null;
+      throw error;
+    });
+  }
+  await schemaReady;
+}
 async function auth(req, env) {
   const raw = req.headers.get("Authorization") || "";
   if (!raw.startsWith("Bearer ")) return null;
@@ -41,6 +74,7 @@ export default {
   if (origin !== ALLOWED_ORIGIN) return response({error:"Origin not allowed"},403,origin);
   const url = new URL(req.url);
   try {
+   await ensureSchema(env);
    if (url.pathname === "/api/health" && req.method === "GET") return response({ok:true,service:"Pautang Manager API"},200,origin);
    if (url.pathname === "/api/register" && req.method === "POST") {
     const body = await req.json();
