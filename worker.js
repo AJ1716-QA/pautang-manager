@@ -71,7 +71,7 @@ export default {
  async fetch(req, env) {
   const origin = req.headers.get("Origin") || "";
   if (req.method === "OPTIONS") return new Response(null, {status:204, headers:cors(origin)});
-  if (origin !== ALLOWED_ORIGIN) return response({error:"Origin not allowed"},403,origin);
+  if (origin && origin !== ALLOWED_ORIGIN) return response({error:"Origin not allowed"},403,origin);
   const url = new URL(req.url);
   try {
    await ensureSchema(env);
